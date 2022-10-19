@@ -6,4 +6,4 @@ This repository contains notebooks that facilitates the data analysis project of
 - Supervisor: Hoang-Anh Ngo, BSc. (Usher Institute, The University of Edinburgh and LCTI, Télécom Paris, Institut Polytechnique de Paris, France)
 - Contributors:
     - Minh-Hung Tran (École Polytechnique, Institut Polytechnique de Paris, France)
-    - Thanh-Nguyen Vu (École Polytechnique, Institut Polytechnique de Paris, France)
+    - Hoang-Nguyen Vu (École Polytechnique, Institut Polytechnique de Paris, France)
