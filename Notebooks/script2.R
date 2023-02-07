@@ -1,3 +1,7 @@
+dataset <- read.csv('/Users/vuhoangnguyen/Repo/nhp-measles-analyse/Notebooks/vacc_out.csv')
+dataset[dataset == ''] <- 'Unknown'
+dataset[is.na(dataset)] <- 'Unknown'
+
 dataset$Distance.from.the.hospital..km. <- as.factor(dataset$Distance.from.the.hospital..km.)
 dataset$Distance.from.the.hospital..km. <- relevel(dataset$Distance.from.the.hospital..km., "0 - <20")
 dataset$Duration.between.onset.and.admission <- as.factor(dataset$Duration.between.onset.and.admission)
