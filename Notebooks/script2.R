@@ -1,9 +1,9 @@
 # used to run on HPC services
-# install.packages("logistf")
-# library(logistf)
+install.packages("logistf")
+library(logistf)
 
 dataset <- read.csv('vacc_out.csv')
-dataset_old <- read.csv('severe_out.csv')
+Vdataset_old <- read.csv('severe_out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
 
@@ -19,7 +19,6 @@ dataset$Duration.between.onset.and.admission <- as.factor(dataset$Duration.betwe
 dataset$Duration.between.onset.and.admission <- relevel(dataset$Duration.between.onset.and.admission, '0 - <3')
 dataset$Duration.of.stay.within.the.hospital <- as.factor(dataset$Duration.of.stay.within.the.hospital)
 dataset$Duration.of.stay.within.the.hospital <- relevel(dataset$Duration.of.stay.within.the.hospital, '0 - <7')
-dataset$Dianosis.of.admission <- as.factor(dataset$Dianosis.of.admission)
 
 fit <- logistf(data = dataset, outcome_died ~ dataset$Female 
                + dataset$admission_year
@@ -28,7 +27,7 @@ fit <- logistf(data = dataset, outcome_died ~ dataset$Female
                + dataset$place_of_exposure 
                + dataset$region_of_address
                # + dataset$Distance.from.the.hospital..km.
-               # + dataset$Duration.between.onset.and.admission
+               + dataset$Duration.between.onset.and.admission
                + dataset$Duration.between.onset.and.test..detection.time...in.hours.
                # + dataset$Duration.of.stay.within.the.hospital
                + dataset$Underlying.conditions...Respiratory.system
