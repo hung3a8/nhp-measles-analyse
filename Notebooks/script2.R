@@ -2,12 +2,12 @@
 install.packages("logistf")
 library(logistf)
 
-dataset <- read.csv('vacc_out.csv')
-Vdataset_old <- read.csv('severe_out.csv')
+dataset <- read.csv('severe_out_2.csv')
+dataset_old <- read.csv('severe_out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
 
-dataset$Duration.between.onset.and.test..detection.time...in.hours. <- as.factor(dataset_old$Duration.between.onset.and.test..detection.time...in.hours.)
+dataset$Duration.between.onset.and.test..detection.time...in.hours. <- as.factor(dataset$Duration.between.onset.and.test..detection.time...in.hours.)
 dataset$Duration.between.onset.and.test..detection.time...in.hours. <- relevel(dataset$Duration.between.onset.and.test..detection.time...in.hours., '0 - <24')
 dataset$admission_year <- as.factor(format(as.Date(dataset$admission_date), "%Y"))
 dataset$region_of_address <- as.factor(dataset$region_of_address)
@@ -20,18 +20,18 @@ dataset$Duration.between.onset.and.admission <- relevel(dataset$Duration.between
 dataset$Duration.of.stay.within.the.hospital <- as.factor(dataset$Duration.of.stay.within.the.hospital)
 dataset$Duration.of.stay.within.the.hospital <- relevel(dataset$Duration.of.stay.within.the.hospital, '0 - <7')
 dataset$Age.group..in.months. <- as.factor(dataset$Age.group..in.months.)
-dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '>=5')
+#dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '0 - 9')
 
 fit <- logistf(data = dataset, outcome_died ~ dataset$Female 
                + dataset$admission_year
-               + dataset$Age.group..in.months. 
+               #+ dataset$Age.group..in.months. 
                + dataset$New.vaccination 
                + dataset$place_of_exposure 
                + dataset$region_of_address
                # + dataset$Distance.from.the.hospital..km.
                #+ dataset$Duration.between.onset.and.admission
                + dataset$Duration.between.onset.and.test..detection.time...in.hours.
-               # + dataset$Duration.of.stay.within.the.hospital
+                + dataset$Duration.of.stay.within.the.hospital
                + dataset$Underlying.conditions...Respiratory.system
                + dataset$Underlying.conditions...Cardiovascular.system
                + dataset$Underlying.condition...Gastrointestinal.system
@@ -45,11 +45,11 @@ fit <- logistf(data = dataset, outcome_died ~ dataset$Female
                + dataset$Pneumonia
                + dataset$Bronchopneumonia
                + dataset$Other.diagnosis
-               + dataset$complication.conjunctivitis
-               + dataset$complication.gastroentiritis
-               + dataset$complication.middle.ear.infec
-               + dataset$complication.pneumonia.bronchitis
-               + dataset$complication.febrile.seizures
+               #+ dataset$complication.conjunctivitis
+               #+ dataset$complication.gastroentiritis
+               #+ dataset$complication.middle.ear.infec
+               #+ dataset$complication.pneumonia.bronchitis
+               #+ dataset$complication.febrile.seizures
                + dataset$complication.septic.shock.sepsis
                + dataset$healthcare_associated_infection
                + dataset$respiratory_syncytical_virus
