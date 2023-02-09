@@ -1,4 +1,4 @@
-dataset <- read.csv('/Users/vuhoangnguyen/Repo/nhp-measles-analyse/Notebooks/out.csv')
+dataset <- read.csv('out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
 
