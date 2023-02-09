@@ -2,7 +2,7 @@
 install.packages("logistf")
 library(logistf)
 
-dataset <- read.csv('severe_out_2.csv')
+dataset <- read.csv('vacc_out.csv')
 dataset_old <- read.csv('severe_out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
@@ -20,11 +20,11 @@ dataset$Duration.between.onset.and.admission <- relevel(dataset$Duration.between
 dataset$Duration.of.stay.within.the.hospital <- as.factor(dataset$Duration.of.stay.within.the.hospital)
 dataset$Duration.of.stay.within.the.hospital <- relevel(dataset$Duration.of.stay.within.the.hospital, '0 - <7')
 dataset$Age.group..in.months. <- as.factor(dataset$Age.group..in.months.)
-#dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '0 - 9')
+dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '0 - 9')
 
 fit <- logistf(data = dataset, outcome_died ~ dataset$Female 
                + dataset$admission_year
-               #+ dataset$Age.group..in.months. 
+               + dataset$Age.group..in.months. 
                + dataset$New.vaccination 
                + dataset$place_of_exposure 
                + dataset$region_of_address
@@ -45,11 +45,11 @@ fit <- logistf(data = dataset, outcome_died ~ dataset$Female
                + dataset$Pneumonia
                + dataset$Bronchopneumonia
                + dataset$Other.diagnosis
-               #+ dataset$complication.conjunctivitis
-               #+ dataset$complication.gastroentiritis
-               #+ dataset$complication.middle.ear.infec
-               #+ dataset$complication.pneumonia.bronchitis
-               #+ dataset$complication.febrile.seizures
+               + dataset$complication.conjunctivitis
+               + dataset$complication.gastroentiritis
+               + dataset$complication.middle.ear.infec
+               + dataset$complication.pneumonia.bronchitis
+               + dataset$complication.febrile.seizures
                + dataset$complication.septic.shock.sepsis
                + dataset$healthcare_associated_infection
                + dataset$respiratory_syncytical_virus
