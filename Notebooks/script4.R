@@ -1,5 +1,5 @@
 library(logistf)
-dataset <- read.csv('out.csv')
+dataset <- read.csv('severe_out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
 
@@ -12,13 +12,16 @@ cbind(exp(coef(fit1)),exp(confint(fit1)))
 fit2 <- logistf(data = dataset, outcome_died ~ Female, firth = TRUE, pl = TRUE)
 summary(fit2)
 cbind(exp(coef(fit2)),exp(confint(fit2)))
-  
+
+dataset$Age.group..in.months. <- as.factor(dataset$Age.group..in.months.)
+dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '0 - 9')
 fit3 <- logistf(data = dataset, outcome_died ~ Age.group..in.months., firth = TRUE, pl = TRUE)
 summary(fit3)
 cbind(exp(coef(fit3)),exp(confint(fit3)))
 
-dataset$Vaccination <- as.factor(dataset$Vaccination)
-fit4 <- logistf(data = dataset, outcome_died ~ Vaccination, firth = TRUE, pl = TRUE)
+dataset$New.vaccination <- as.factor(dataset$New.vaccination)
+dataset$New.vaccination <- relevel(dataset$New.vaccination, "0")
+fit4 <- logistf(data = dataset, outcome_died ~ New.vaccination, firth = TRUE, pl = TRUE)
 summary(fit4)
 cbind(exp(coef(fit4)),exp(confint(fit4)))
 
@@ -194,5 +197,3 @@ cbind(exp(coef(fit43)),exp(confint(fit43)))
 fit44 <- logistf(data = dataset, outcome_died ~ dataset$healthcare_associated_infection, firth = TRUE, pl = TRUE)
 summary(fit44)
 cbind(exp(coef(fit44)),exp(confint(fit44)))
-
-
