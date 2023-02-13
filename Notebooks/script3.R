@@ -21,40 +21,41 @@ dataset$Duration.of.stay.within.the.hospital <- relevel(dataset$Duration.of.stay
 dataset$Age.group..in.months. <- as.factor(dataset$Age.group..in.months.)
 dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '0 - 9')
 
-fit <- logistf(data = dataset, Clinical.classification ~ dataset$Female 
+fit <- logistf(data = dataset, Clinical.classification ~ 
+                 dataset$Female 
                + dataset$admission_year
                + dataset$Age.group..in.months. 
                + dataset$New.vaccination 
                + dataset$place_of_exposure 
-               + dataset$region_of_address
+               #+ dataset$region_of_address
                #+ dataset$Distance.from.the.hospital..km.
                #+ dataset$Duration.between.onset.and.admission
                + dataset$Duration.between.onset.and.test..detection.time...in.hours.
                + dataset$Duration.of.stay.within.the.hospital
-               + dataset$Underlying.conditions...Respiratory.system
-               + dataset$Underlying.conditions...Cardiovascular.system
+               #+ dataset$Underlying.conditions...Respiratory.system
+               #+ dataset$Underlying.conditions...Cardiovascular.system
                + dataset$Underlying.condition...Gastrointestinal.system
-               + dataset$Underlying.condition...Kidney.and.urology.system
-               + dataset$Underlying.condition...Immunodeficiency
-               + dataset$Underlying.condition...Neurological.system
-               + dataset$Underlying.condition...Inherited.metabolic.disorders
-               + dataset$Underlying.condition...Other.underlying.conditions
-               + dataset$Underlying.condition...No.underlying.diseases
+               # + dataset$Underlying.condition...Kidney.and.urology.system
+               # + dataset$Underlying.condition...Immunodeficiency
+               # + dataset$Underlying.condition...Neurological.system
+               # + dataset$Underlying.condition...Inherited.metabolic.disorders
+               # + dataset$Underlying.condition...Other.underlying.conditions
+               # + dataset$Underlying.condition...No.underlying.diseases
                + dataset$Measles
                + dataset$Pneumonia
                + dataset$Bronchopneumonia
                + dataset$Other.diagnosis
-               + dataset$complication.conjunctivitis
-               + dataset$complication.gastroentiritis
-               + dataset$complication.middle.ear.infec
-               + dataset$complication.pneumonia.bronchitis
-               + dataset$complication.febrile.seizures
-               + dataset$complication.septic.shock.sepsis
-               + dataset$healthcare_associated_infection
-               + dataset$respiratory_syncytical_virus
+               # + dataset$complication.conjunctivitis
+                + dataset$complication.gastroentiritis
+               # + dataset$complication.middle.ear.infec
+                + dataset$complication.pneumonia.bronchitis
+               # + dataset$complication.febrile.seizures
+               # + dataset$complication.septic.shock.sepsis
+               #+ dataset$healthcare_associated_infection
+               #+ dataset$respiratory_syncytical_virus
                + dataset$adenovirus
-               + dataset$pertussis,
-               firth = TRUE, pl = TRUE)
+               #+ dataset$pertussis
+               ,firth = TRUE, pl = TRUE)
 summary(fit)
 cbind(exp(coef(fit)),exp(confint(fit)))
 drop1(fit, test="F")
