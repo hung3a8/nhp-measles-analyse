@@ -29,7 +29,7 @@ fit <- logistf(data = dataset, dataset$outcome_died ~
                + dataset$Age.group..in.months. 
                + dataset$New.vaccination 
                + dataset$place_of_exposure 
-               + dataset$region_of_address
+               #+ dataset$region_of_address
                + dataset$Distance.from.the.hospital..km.
                #+ dataset$Duration.between.onset.and.admission
                + dataset$Duration.between.onset.and.test..detection.time...in.hours.
@@ -43,10 +43,10 @@ fit <- logistf(data = dataset, dataset$outcome_died ~
                + dataset$Underlying.condition...Inherited.metabolic.disorders
                + dataset$Underlying.condition...Other.underlying.conditions
                + dataset$Underlying.condition...No.underlying.diseases
-               + dataset$Measles
-               + dataset$Pneumonia
-               + dataset$Bronchopneumonia
-               + dataset$Other.diagnosis
+               # + dataset$Measles
+               # + dataset$Pneumonia
+               # + dataset$Bronchopneumonia
+               # + dataset$Other.diagnosis
                + dataset$complication.conjunctivitis
                + dataset$complication.gastroentiritis
                + dataset$complication.middle.ear.infec
