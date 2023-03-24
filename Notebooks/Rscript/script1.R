@@ -1,3 +1,4 @@
+options(digits=3)
 library(logistf)
 dataset <- read.csv('out.csv')
 dataset[dataset == ''] <- 'Unknown'

@@ -1,7 +1,7 @@
 options(digits=3)
 
 # Get data from dataset
-dataset <- read.csv("Notebooks/severe_out.csv")
+dataset <- read.csv("severe_out.csv")
 
 # Replace NA with Unknown
 dataset[is.na(dataset)] <- "Unknown"
