@@ -13,8 +13,10 @@ cbind(exp(coef(fit1)),exp(confint(fit1)))
 fit2 <- logistf(data = dataset, outcome_died ~ Female, firth = TRUE, pl = TRUE)
 summary(fit2)
 cbind(exp(coef(fit2)),exp(confint(fit2)))
-  
-fit3 <- logistf(data = dataset, outcome_died ~ Age.group..in.months., firth = TRUE, pl = TRUE)
+
+dataset$New.Age.group..in.months. <- as.factor(dataset$New.Age.group..in.months.)
+dataset$New.Age.group..in.months. <- relevel(dataset$New.Age.group..in.months., '>= 60')
+fit3 <- logistf(data = dataset, outcome_died ~ New.Age.group..in.months., firth = TRUE, pl = TRUE)
 summary(fit3)
 cbind(exp(coef(fit3)),exp(confint(fit3)))
 
@@ -25,7 +27,7 @@ summary(fit4)
 cbind(exp(coef(fit4)),exp(confint(fit4)))
 
 dataset$place_of_exposure <- as.factor(dataset$place_of_exposure)
-dataset$place_of_exposure <- relevel(dataset$place_of_exposure, "community")
+dataset$place_of_exposure <- relevel(dataset$place_of_exposure, "NHP")
 fit5 <- logistf(data = dataset, outcome_died ~ place_of_exposure, firth = TRUE, pl = TRUE)
 summary(fit5)
 cbind(exp(coef(fit5)),exp(confint(fit5)))

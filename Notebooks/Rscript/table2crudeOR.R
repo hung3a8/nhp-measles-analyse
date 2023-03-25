@@ -17,8 +17,13 @@ fit3 <- logistf(data = dataset, Clinical.classification ~ Age.group..in.months.,
 summary(fit3)
 cbind(exp(coef(fit3)),exp(confint(fit3)))
 
-dataset$Vaccination <- as.factor(dataset$Vaccination)
-fit4 <- logistf(data = dataset, Clinical.classification ~ Vaccination, firth = TRUE, pl = TRUE)
+fit3 <- logistf(data = dataset, Clinical.classification ~ New.Age.group..in.months., firth = TRUE, pl = TRUE)
+summary(fit3)
+cbind(exp(coef(fit3)),exp(confint(fit3)))
+
+dataset$New.vaccination <- as.factor(dataset$New.vaccination)
+dataset$New.vaccination <- relevel(dataset$New.vaccination, '0')
+fit4 <- logistf(data = dataset, Clinical.classification ~ New.vaccination, firth = TRUE, pl = TRUE)
 summary(fit4)
 cbind(exp(coef(fit4)),exp(confint(fit4)))
 
@@ -111,9 +116,6 @@ cbind(exp(coef(fit22)),exp(confint(fit22)))
 fit23 <- logistf(data = dataset, Clinical.classification ~ dataset$ECMO, firth = TRUE, pl = TRUE)
 summary(fit23)
 cbind(exp(coef(fit23)),exp(confint(fit23)))
-
-
-
 
 dataset$Duration.between.onset.and.test..detection.time...in.hours. <- as.factor(dataset$Duration.between.onset.and.test..detection.time...in.hours.)
 dataset$Duration.between.onset.and.test..detection.time...in.hours. <- relevel(dataset$Duration.between.onset.and.test..detection.time...in.hours., '0 - <24')
