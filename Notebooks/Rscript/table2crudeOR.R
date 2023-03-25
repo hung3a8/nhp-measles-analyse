@@ -23,7 +23,7 @@ summary(fit4)
 cbind(exp(coef(fit4)),exp(confint(fit4)))
 
 dataset$place_of_exposure <- as.factor(dataset$place_of_exposure)
-dataset$place_of_exposure <- relevel(dataset$place_of_exposure, "community")
+dataset$place_of_exposure <- relevel(dataset$place_of_exposure, "NHP")
 fit5 <- logistf(data = dataset, Clinical.classification ~ place_of_exposure, firth = TRUE, pl = TRUE)
 summary(fit5)
 cbind(exp(coef(fit5)),exp(confint(fit5)))
