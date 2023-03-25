@@ -18,8 +18,9 @@ fit3 <- logistf(data = dataset, outcome_died ~ Age.group..in.months., firth = TR
 summary(fit3)
 cbind(exp(coef(fit3)),exp(confint(fit3)))
 
-dataset$Vaccination <- as.factor(dataset$Vaccination)
-fit4 <- logistf(data = dataset, outcome_died ~ Vaccination, firth = TRUE, pl = TRUE)
+dataset$New.vaccination <- as.factor(dataset$New.vaccination)
+dataset$New.vaccination <- relevel(dataset$New.vaccination, '0')
+fit4 <- logistf(data = dataset, outcome_died ~ New.vaccination, firth = TRUE, pl = TRUE)
 summary(fit4)
 cbind(exp(coef(fit4)),exp(confint(fit4)))
 
