@@ -23,6 +23,9 @@ dataset$Age.group..in.months. <- relevel(dataset$Age.group..in.months., '>= 60')
 dataset$place_of_exposure <- as.factor(dataset$place_of_exposure)
 dataset$place_of_exposure <- relevel(dataset$place_of_exposure, 'NHP')
 
+dataset$admission_years <- as.factor(dataset$admission_years)
+dataset$admission_years <- relevel(dataset$admission_years, '2017')
+
 fit <- logistf(data = dataset, Clinical.classification ~ 
                  dataset$Female 
                + dataset$admission_years
