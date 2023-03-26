@@ -1,6 +1,9 @@
+# used to run on HPC services
+install.packages("logistf")
+
 options(digits=3)
 library(logistf)
-dataset <- read.csv('out.csv')
+dataset <- read.csv('Notebooks/Data/out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
 
