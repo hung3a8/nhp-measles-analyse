@@ -1,8 +1,10 @@
 # used to run on HPC services
 install.packages("logistf")
 library(logistf)
+options(digits=3)
+options(scipen = 999)
 
-dataset <- read.csv('out.csv')
+dataset <- read.csv('Notebooks/Data/out.csv')
 dataset[dataset == ''] <- 'Unknown'
 dataset[is.na(dataset)] <- 'Unknown'
 
@@ -58,7 +60,7 @@ fit <- logistf(data = dataset, dataset$outcome_died ~
                # + dataset$complication.laryngitis
                # + dataset$complication.pneumonia.bronchitis
                # + dataset$complication.febrile.seizures
-               # + dataset$complication.septic.shock.sepsis
+               + dataset$complication.septic.shock.sepsis
                + dataset$healthcare_associated_infection
                + dataset$respiratory_syncytical_virus
                + dataset$adenovirus
