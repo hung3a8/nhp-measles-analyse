@@ -56,9 +56,9 @@ fit <- logistf(data = dataset, dataset$outcome_died ~
                #  + dataset$complication.gastroentiritis
                #  + dataset$complication.middle.ear.infec
                # + dataset$complication.laryngitis
-               + dataset$complication.pneumonia.bronchitis
+               # + dataset$complication.pneumonia.bronchitis
                # + dataset$complication.febrile.seizures
-               + dataset$complication.septic.shock.sepsis
+               # + dataset$complication.septic.shock.sepsis
                + dataset$healthcare_associated_infection
                + dataset$respiratory_syncytical_virus
                + dataset$adenovirus
