@@ -1,4 +1,5 @@
 # used to run on HPC services
+install.packages("logistf")
 library(logistf)
 options(digits=3)
 options(scipen = 999)
