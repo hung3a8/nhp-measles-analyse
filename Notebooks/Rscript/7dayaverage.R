@@ -38,5 +38,4 @@ plt <- ggplot(data = rolling) +
   geom_line(mapping = aes(x = admission_date, y = indexed_7day), size = 1) + 
   ylab('Cases') + 
   xlab('Date')
-
-pltlibrary(scales)
+plt
